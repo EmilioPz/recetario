@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles/Sidebar.module.css';
 
-const UserInfo = ({ userName = 'Usuario', avatarUrl, onLogout }) => {
+const UserInfo = ({ userName = 'Emilio Pérez', avatarUrl, onLogout }) => {
     return (
         <div className={styles.userInfoWrapper}>
             <div className={styles.userInfo}>

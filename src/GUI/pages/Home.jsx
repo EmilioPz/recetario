@@ -5,8 +5,6 @@ import TablaRecetas from '../components/TablaRecetas';
 import { useFetch } from '../../API/hooks/useFetch';
 import { useIngredientesUnicos } from '../../API/hooks/useIngredientesUnicos';
 import { useTiempoPromedio } from '../../API/hooks/useTiempoPromedio';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles/Home.module.css';
 
 export default function Home() {
@@ -18,12 +16,7 @@ export default function Home() {
   if (error) return <p className={styles.error}>Error al cargar recetas.</p>;
 
   return (
-    <>
-          <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
-
-   
     <div className={styles.container}>
-
       <Sidebar />
       <div className={styles.content}>
         <h2 className={styles.heading}>Dashboard</h2>
@@ -41,6 +34,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-     </>
   );
 }

@@ -74,7 +74,7 @@ const res = recetas
 
     return (
         <div className={styles.container}>
-            <Sidebar userName="Usuario" />
+            <Sidebar />
             <main className={styles.main}>
                 <h2 style={{ marginBottom: 20 }}>Buscar recetas por ingredientes</h2>
 

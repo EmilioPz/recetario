@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Form, Pagination, Spinner } from 'react-bootstrap';
 import styles from './styles/TablaRecetas.module.css';
 import BotoneraReceta from './BotoneraReceta';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const API_URL = 'http://localhost:3001/api';
 
@@ -14,6 +13,7 @@ export default function TablaRecetas({ onRefresh }) {
   const [busqueda, setBusqueda] = useState('');
   const [pagina, setPagina] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [actionLoading, setActionLoading] = useState(false); // NEW
 
   const recetasPorPagina = 8;
 
@@ -36,35 +36,49 @@ export default function TablaRecetas({ onRefresh }) {
   };
 
   const saveEdit = (id) => {
+    if (!newImage.trim()) {
+      toast.warn('⚠️ La imagen no puede estar vacía');
+      return;
+    }
+
+    setActionLoading(true);
     fetch(`${API_URL}/recetas/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ imagen: newImage }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
       .then(() => {
+        toast.dismiss();
+        toast.success('✅ Imagen actualizada');
         setEditId(null);
         cargarRecetas();
         if (onRefresh) onRefresh();
-        toast.success('✅ Imagen actualizada');
       })
-      .catch(() => toast.error('❌ Error al actualizar imagen'));
+      .catch(() => toast.dismiss() || toast.error('❌ Error al actualizar imagen'))
+      .finally(() => setActionLoading(false));
   };
 
   const handleEliminar = (id) => {
-    if (window.confirm('¿Seguro que quieres eliminar esta receta?')) {
-      fetch(`${API_URL}/recetas/${id}`, { method: 'DELETE' })
-        .then((res) => {
-          if (!res.ok) throw new Error('Error al eliminar receta');
-          return res.json();
-        })
-        .then((data) => {
-          cargarRecetas();
-          if (onRefresh) onRefresh();
-          toast.success(data.message || '🗑️ Receta eliminada correctamente');
-        })
-        .catch(() => toast.error('❌ Error al eliminar receta'));
-    }
+    if (!window.confirm('¿Seguro que quieres eliminar esta receta?')) return;
+
+    setActionLoading(true);
+    fetch(`${API_URL}/recetas/${id}`, { method: 'DELETE' })
+      .then((res) => {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
+      .then((data) => {
+        toast.dismiss();
+        toast.success(data.message || '🗑️ Receta eliminada correctamente');
+        cargarRecetas();
+        if (onRefresh) onRefresh();
+      })
+      .catch(() => toast.dismiss() || toast.error('❌ Error al eliminar receta'))
+      .finally(() => setActionLoading(false));
   };
 
   const recetasFiltradas = recetas.filter((r) =>
@@ -79,9 +93,6 @@ export default function TablaRecetas({ onRefresh }) {
 
   return (
     <div>
-      {/* Toast container global */}
-      <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
-
       {loading ? (
         <div className="text-center my-4">
           <Spinner animation="border" /> Cargando recetas...
@@ -137,6 +148,7 @@ export default function TablaRecetas({ onRefresh }) {
                       onCancel={() => setEditId(null)}
                       onEdit={startEdit}
                       onDelete={handleEliminar}
+                      disabled={actionLoading} // Pass loading state to disable buttons if needed
                     />
                   </td>
                 </tr>
