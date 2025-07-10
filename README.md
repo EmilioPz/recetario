@@ -79,4 +79,4 @@ https://tu-recetario-frontend.vercel.app
 
 ✨ Créditos
 
-Desarrollado por [Tu Nombre].
+Desarrollado por Emilio Pérez.
