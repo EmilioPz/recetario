@@ -8,7 +8,7 @@ import { useTiempoPromedio } from '../../API/hooks/useTiempoPromedio';
 import styles from './styles/Home.module.css';
 
 export default function Home() {
-  const { data: recetas, loading, error, refetch } = useFetch('http://localhost:3001/api/recetas');
+  const { data: recetas, loading, error, refetch } = useFetch(`${process.env.REACT_APP_API_URL}/api/recetas`);
   const ingredientesUnicos = useIngredientesUnicos(recetas);
   const tiempoPromedio = useTiempoPromedio(recetas);
 

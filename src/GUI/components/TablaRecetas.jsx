@@ -4,7 +4,7 @@ import styles from './styles/TablaRecetas.module.css';
 import BotoneraReceta from './BotoneraReceta';
 import { toast } from 'react-toastify';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = `${process.env.REACT_APP_API_URL}/api`;
 
 export default function TablaRecetas({ onRefresh }) {
   const [recetas, setRecetas] = useState([]);

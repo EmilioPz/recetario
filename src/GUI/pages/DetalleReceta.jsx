@@ -6,7 +6,7 @@ import styles from './styles/DetalleReceta.module.css';
 
 export default function DetalleReceta() {
   const { id } = useParams();
-  const { data: receta, loading, error } = useFetch(`http://localhost:3001/api/recetas/${id}`);
+  const { data: receta, loading, error } = useFetch(`${process.env.REACT_APP_API_URL}/api/recetas/${id}`);
 
   if (loading) {
     return (

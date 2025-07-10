@@ -5,7 +5,7 @@ import styles from './styles/BuscarRecetas.module.css';
 import IngredienteInput from '../components/IngredienteInput';
 import RecetaCard from '../components/RecetaCard';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = `${process.env.REACT_APP_API_URL}/api`;
 
 export default function BuscarRecetas() {
     const [ingredienteInput, setIngredienteInput] = useState('');

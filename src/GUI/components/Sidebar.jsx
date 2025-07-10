@@ -2,15 +2,21 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './styles/Sidebar.module.css';
 import UserInfo from './UserInfo';
+import { useNavigate } from 'react-router-dom';
+
 
 const Sidebar = ({ userName }) => {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
 
-  const handleLogout = () => {
-    alert('Logout');
-  };
+  const navigate = useNavigate();
+
+ const handleLogout = () => {
+  localStorage.removeItem('isAuthenticated');
+  localStorage.removeItem('userId');
+  navigate('/login');
+};
 
   return (
     <div className={styles.sidebar}>
