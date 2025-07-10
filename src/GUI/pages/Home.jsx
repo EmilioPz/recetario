@@ -5,7 +5,7 @@ import TablaRecetas from '../components/TablaRecetas';
 import { useFetch } from '../../API/hooks/useFetch';
 import { useIngredientesUnicos } from '../../API/hooks/useIngredientesUnicos';
 import { useTiempoPromedio } from '../../API/hooks/useTiempoPromedio';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles/Home.module.css';
 
