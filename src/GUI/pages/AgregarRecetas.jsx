@@ -11,7 +11,7 @@ export default function AgregarReceta() {
   const [toast, setToast] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const API_URL = `${process.env.REACT_APP_API_URL}/api/recetas`;
+  const API_URL = `${process.env.REACT_APP_API_URL}/utils/recetas`;
 
   const isValidURL = (str) => {
     try {

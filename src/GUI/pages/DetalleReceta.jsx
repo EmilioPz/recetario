@@ -1,12 +1,12 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import { useFetch } from '../../API/hooks/useFetch';
+import { useFetch } from '../../utils/hooks/useFetch';
 import styles from './styles/DetalleReceta.module.css';
 
 export default function DetalleReceta() {
   const { id } = useParams();
-  const { data: receta, loading, error } = useFetch(`${process.env.REACT_APP_API_URL}/api/recetas/${id}`);
+  const { data: receta, loading, error } = useFetch(`${process.env.REACT_APP_API_URL}/utils/recetas/${id}`);
 
   if (loading) {
     return (

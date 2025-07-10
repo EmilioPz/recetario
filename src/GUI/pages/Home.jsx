@@ -2,13 +2,13 @@ import Sidebar from '../components/Sidebar';
 import StatCard from '../components/StatCard';
 import { FaUtensils, FaCarrot, FaClock } from 'react-icons/fa';
 import TablaRecetas from '../components/TablaRecetas';
-import { useFetch } from '../../API/hooks/useFetch';
-import { useIngredientesUnicos } from '../../API/hooks/useIngredientesUnicos';
-import { useTiempoPromedio } from '../../API/hooks/useTiempoPromedio';
+import { useFetch } from '../../utils/hooks/useFetch';
+import { useIngredientesUnicos } from '../../utils/hooks/useIngredientesUnicos';
+import { useTiempoPromedio } from '../../utils/hooks/useTiempoPromedio';
 import styles from './styles/Home.module.css';
 
 export default function Home() {
-  const { data: recetas, loading, error, refetch } = useFetch(`${process.env.REACT_APP_API_URL}/api/recetas`);
+  const { data: recetas, loading, error, refetch } = useFetch(`${process.env.REACT_APP_API_URL}/utils/recetas`);
   const ingredientesUnicos = useIngredientesUnicos(recetas);
   const tiempoPromedio = useTiempoPromedio(recetas);
 
