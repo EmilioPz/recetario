@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+🍳 Recetario App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación web de recetas, con login, CRUD de recetas, ingredientes y dashboard, desarrollada en React y conectada a backend Node.js + MySQL.
 
-## Available Scripts
+⸻
 
-In the project directory, you can run:
+🚀 Tecnologías
+	•	Frontend: React (Create React App)
+	•	Backend: Node.js + Express (Railway)
+	•	Base de datos: MySQL (Railway)
+	•	Despliegue Frontend: Vercel
 
-### `npm start`
+⸻
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+📂 Estructura del proyecto
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+/frontend  → React app
+/backend   → Node.js API
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+⸻
 
-### `npm run build`
+🛠 Configuración local
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1️⃣ Clonar el repo:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+git clone https://github.com/tu-usuario/recetario-app.git
+cd recetario-app/frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2️⃣ Instalar dependencias:
 
-### `npm run eject`
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3️⃣ Crear archivo .env.local:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+REACT_APP_API_URL=http://localhost:3001
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4️⃣ Iniciar local:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm start
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+⸻
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🌍 Despliegue en Vercel
 
-### Code Splitting
+1️⃣ Subir frontend a GitHub.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2️⃣ En Vercel:
+	•	Importar proyecto desde GitHub.
+	•	Configurar en Settings → Environment Variables:
 
-### Analyzing the Bundle Size
+REACT_APP_API_URL=https://recetario-api-production.up.railway.app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3️⃣ Hacer Deploy.
 
-### Making a Progressive Web App
+✅ URL final:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+https://tu-recetario-frontend.vercel.app
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+⸻
 
-### Deployment
+⚡ Funcionalidades
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+✅ Login de usuarios
+✅ Listado y búsqueda de recetas
+✅ CRUD de recetas e ingredientes
+✅ Dashboard con estadísticas
+✅ Cierre de sesión
 
-### `npm run build` fails to minify
+⸻
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+💡 Notas importantes
+	•	Backend en Railway: https://recetario-api-production.up.railway.app
+	•	Base de datos: MySQL con recetas y usuarios de prueba.
+
+⸻
+
+✨ Créditos
+
+Desarrollado por [Tu Nombre].
