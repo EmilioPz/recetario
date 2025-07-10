@@ -1,0 +1,25 @@
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 160px;
+}
+
+.icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.cardTitle {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.cardValue {
+  font-size: 1.2rem;
+  font-weight: bold;
+}

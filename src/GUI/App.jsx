@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import Home from './pages/Home';
+import 'react-toastify/dist/ReactToastify.css';import Home from './pages/Home';
 import BuscarRecetas from './pages/BuscarRecetas';
 import AgregarRecetas from './pages/AgregarRecetas';
 import DetalleReceta from './pages/DetalleReceta';

@@ -1,46 +1,73 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Sidebar from '../components/Sidebar';
-import { recetas } from '../../API/recetas';
+import { useFetch } from '../../API/hooks/useFetch';
+import styles from './styles/DetalleReceta.module.css';
 
 export default function DetalleReceta() {
   const { id } = useParams();
-  const receta = recetas.find(r => r.id === parseInt(id));
+  const { data: receta, loading, error } = useFetch(`http://localhost:3001/api/recetas/${id}`);
 
-  if (!receta) {
+  if (loading) {
     return (
-      <Container>
-        <h2>Receta no encontrada</h2>
-        <Link to="/">Volver al inicio</Link>
-      </Container>
+      <div className={styles.container}>
+        <Sidebar />
+        <div className={styles.content}>
+          <h2 className={styles.heading}>Cargando receta...</h2>
+        </div>
+      </div>
     );
   }
 
+  if (error || !receta) {
+    return (
+      <div className={styles.container}>
+        <Sidebar />
+        <div className={styles.content}>
+          <h2 className={styles.heading}>Receta no encontrada</h2>
+          <Link to="/" className={styles.link}>← Volver al inicio</Link>
+        </div>
+      </div>
+    );
+  }
+
+  const ingredientesList = Array.isArray(receta.ingredientes)
+    ? receta.ingredientes
+    : receta.ingredientes
+    ? receta.ingredientes.split(',').map((i) => i.trim())
+    : [];
+
   return (
-    <Container fluid>
-      <Row>
-        <Col md={3}>
-          <Sidebar />
-        </Col>
-        <Col md={9} className="p-4">
-          <h2>{receta.nombre}</h2>
-          <Card>
-            <Card.Body>
-              <Card.Img variant="top" src={receta.imagen} alt={receta.nombre} />
-              <Card.Title>Ingredientes</Card.Title>
-              <Card.Text>{receta.ingredientes.join(', ')}</Card.Text>
-              <Card.Title>Tiempo de preparación</Card.Title>
-              <Card.Text>{receta.tiempo}</Card.Text>
-              <Card.Title>Instrucciones</Card.Title>
-              <Card.Text>{receta.instrucciones}</Card.Text>
-              <Button variant="secondary" as={Link} to="/">
-                Volver
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    <div className={styles.container}>
+      <Sidebar />
+      <div className={styles.content}>
+        <h2 className={styles.heading}>{receta.nombre}</h2>
+
+        <div className={styles.card}>
+          <img src={receta.imagen} alt={receta.nombre} className={styles.image} />
+
+          <div className={styles.section}>
+            <h3 className={styles.sectionTitle}>Ingredientes</h3>
+            <ul className={styles.list}>
+              {ingredientesList.map((ing, idx) => (
+                <li key={idx} className={styles.listItem}>{ing}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.section}>
+            <h3 className={styles.sectionTitle}>Tiempo de preparación</h3>
+            <p className={styles.text}>{receta.tiempo}</p>
+          </div>
+
+          <div className={styles.section}>
+            <h3 className={styles.sectionTitle}>Instrucciones</h3>
+            <p className={styles.text}>{receta.instrucciones}</p>
+          </div>
+
+          <Link to="/" className={styles.backBtn}>← Volver</Link>
+        </div>
+      </div>
+    </div>
   );
 }
